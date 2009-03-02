@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2008 Cédric Luthi
+//  Copyright (c) 2008-2009 Cédric Luthi
 //
 
 #import <CoreFoundation/CFBundle.h>
@@ -11,6 +11,11 @@
 #import <mach-o/getsect.h>
 #import <mach-o/nlist.h>
 
+#if defined (__ppc__)
+#error PowerPC is not yet supported
+#elif defined (__LP64__)
+#error 64 bits is not yet supported
+#endif
 
 @interface QuietXcode : NSObject {}
 @end
