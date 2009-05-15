@@ -34,13 +34,13 @@
 		return;
 	}
 	
-	// Check Xcode version number, only patch for version 3.1 (1099), 3.1.1 (1115) and 3.1.2 (1149)
+	// Check Xcode version number, only patch for version 3.1 (1099) and later
 	CFStringRef versionNumber = CFBundleGetValueForInfoDictionaryKey(mainBundle, kCFBundleVersionKey);
 	float floatVersion = [(NSString *)versionNumber floatValue];
 	if (!versionNumber) {
 		// This happens when using xcodebuild for example
 		return;
-	} else if (!(floatVersion == 1099 || floatVersion == 1115 || floatVersion == 1149)) {
+	} else if (floatVersion < 1099) {
 		@throw [NSException exceptionWithName:nil reason:[NSString stringWithFormat:@"untested Xcode version %@ (%@)", CFBundleGetValueForInfoDictionaryKey(mainBundle, CFSTR("CFBundleShortVersionString")), versionNumber] userInfo:nil];
 	}
 	
